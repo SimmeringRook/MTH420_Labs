@@ -1,8 +1,8 @@
 # object_oriented.py
 """Python Essentials: Object Oriented Programming.
-<Name>
-<Class>
-<Date>
+Thomas Knudson
+MTH 420, S2022
+April 15, 2022
 """
 
 
@@ -12,25 +12,38 @@ class Backpack:
     Attributes:
         name (str): the name of the backpack's owner.
         contents (list): the contents of the backpack.
+        color (str): the color of the backpack
+        max_size (int): the integer capacity of items the backpack can hold
     """
 
     # Problem 1: Modify __init__() and put(), and write dump().
-    def __init__(self, name):
+    def __init__(self, name: str, color: str, max_size: int=5,):
         """Set the name and initialize an empty list of contents.
 
         Parameters:
             name (str): the name of the backpack's owner.
+            color (str): the color of the backpack.
+            max_size (int): the maximum item capacity for the backpack.
         """
         self.name = name
         self.contents = []
+        self.color = color
+        self.max_size= max_size
 
-    def put(self, item):
-        """Add an item to the backpack's list of contents."""
+    def put(self, item)->None:
+        """Add an item to the backpack's list of contents, if there is room."""
+        if len(self.contents) == self.max_size:
+            print("No Room!")
+            return
         self.contents.append(item)
 
-    def take(self, item):
+    def take(self, item)->None:
         """Remove an item from the backpack's list of contents."""
         self.contents.remove(item)
+        
+    def dump(self)->None:
+        """Removes all items from the backpack's list of contents."""
+        self.contents = [ ]
 
     # Magic Methods -----------------------------------------------------------
 
@@ -45,6 +58,17 @@ class Backpack:
         """
         return len(self.contents) < len(other.contents)
 
+def test_backpack():
+    testpack = Backpack("Barry", "black") # Instantiate the object.
+    if testpack.name != "Barry": # Test an attribute.
+        print("Backpack.name assigned incorrectly")
+    for item in ["pencil", "pen", "paper", "computer"]:
+        testpack.put(item) # Test a method.
+    print("Contents:", testpack.contents)
+    for item in ["pencil", "pen", "paper", "computer"]:
+        testpack.put(item) # Test capacity.
+    testpack.dump()
+    print("Contents:", testpack.contents)
 
 # An example of inheritance. You are not required to modify this class.
 class Knapsack(Backpack):
