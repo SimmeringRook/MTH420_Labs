@@ -184,3 +184,45 @@ def test_jetpack():
     print(f'Fuel remaining: {test_jetpack.amount_of_fuel}')
 
 # Problem 4: Write a 'ComplexNumber' class.
+class ComplexNumber:
+    
+    def __init__(self, real: float, imaginary: float):
+        self.real = real
+        self.imag = imaginary
+    
+    def conjugate(self):
+        return ComplexNumber(self.real, -self.imag)
+    
+    def __str__(self):
+        if self.imag < 0:
+            return f'({self.real}{self.imag}j)'
+        return f'({self.real}+{self.imag}j)'
+    
+    def __abs__(self):
+        from math import sqrt
+        return sqrt((self.real**2) + (self.imag**2))
+    
+    def __eq__(self, other):
+        if not isinstance(other, self):
+            raise TypeError("ComplexNumbers can only be compared against other ComplexNumbers (or those that inherit from it)")
+        return (self.real == other.real) and (self.imag == other.imag)
+    
+    def __add__(self, other):
+        if not isinstance(other, self):
+            raise TypeError("ComplexNumbers can only be added with other ComplexNumbers (or those that inherit from it)")
+        return ComplexNumber(self.real+other.real, self.imag+other.imag)
+     
+    def __sub__(self, other):
+        if not isinstance(other, self):
+            raise TypeError("ComplexNumbers can only be subtracted from other ComplexNumbers (or those that inherit from it)")
+        return ComplexNumber(self.real-other.real, self.imag-other.imag)
+     
+    def __mul__(self, other):
+        if not isinstance(other, self):
+            raise TypeError("ComplexNumbers can only be multiplied with other     ComplexNumbers (or those that inherit from it)")
+        return ComplexNumber(self.real*other.real, self.imag*other.imag)
+    
+    def __truediv__(self, other):
+        if not isinstance(other, self):
+            raise TypeError("ComplexNumbers can only be divided from other     ComplexNumbers (or those that inherit from it)")
+        return ComplexNumber(self.real/other.real, self.imag/other.imag)
