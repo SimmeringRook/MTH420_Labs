@@ -6,6 +6,9 @@ April 15, 2022
 """
 
 
+from typing import Type
+
+
 class Backpack:
     """A Backpack object class. Has a name and a list of contents.
 
@@ -57,6 +60,14 @@ class Backpack:
         than 'other', return True. Otherwise, return False.
         """
         return len(self.contents) < len(other.contents)
+    
+    def __eq__(self, other):
+        if not isinstance(other, self):
+            raise TypeError("Can't compare objects of different types.")
+        return (self.name == other.name) and (self.color == other.color) and (len(self.contents) == len(other.contents))
+    
+    def __str__(self):
+        return f'Owner:\t{self.name}\nColor:\t{self.color}\nSize:\t{len(self.contents)}\nMax Size:\t{self.max_size}\nContents:\t{self.contents}'
 
 def test_backpack():
     testpack = Backpack("Barry", "black") # Instantiate the object.
