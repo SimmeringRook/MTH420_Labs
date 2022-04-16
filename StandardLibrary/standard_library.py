@@ -10,7 +10,7 @@ April 15, 2022
 from itertools import combinations, permutations
 
 
-def prob1(L):
+def prob1(L)->tuple:
     """Return the minimum, maximum, and average of the entries of L
     (in that order).
     """
@@ -20,7 +20,7 @@ def prob1(L):
     return min(L), max(L), (sum(L)/len(L))
 
 # Problem 2
-def prob2():
+def prob2()->None:
     """Determine which Python objects are mutable and which are immutable.
     Test numbers, strings, lists, tuples, and sets. Print your results.
     """
@@ -54,7 +54,7 @@ def prob2():
 
 # Problem 3
 
-def hypot(a, b,/):
+def hypot(a: float, b: float,/)->float:
     """Calculate and return the length of the hypotenuse of a right triangle.
     Do not use any functions other than sum(), product() and sqrt that are 
     imported from your 'calculator' module.
@@ -69,7 +69,7 @@ def hypot(a, b,/):
     return calculator.sqrt(calculator.sum(calculator.product(a,a), calculator.product(b,b)))
 
 # Problem 4
-def power_set(A):
+def power_set(A)->list:
     """Use itertools to compute the power set of A.
 
     Parameters:
