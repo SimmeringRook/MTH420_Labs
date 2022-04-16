@@ -6,32 +6,47 @@
 """
 
 #Problem 1
-def isolate(a, b, c, d, e):
+import enum
 
-    raise NotImplementedError("Problem 1 Incomplete")
+
+def isolate(a, b, c, d, e)->None:
+    """Prints the first three positional arguements with a five space separation and then the last two positional arguements with a single space separator and returns a new line.
+    """
+    print(a, b, c, sep='     ', end=' ')
+    print(d, e, end='\n')
+
 
 #Problem 2
-def first_half(string):
+def first_half(string: str,/)->str:
+    """Returns the first half of the given string, excluding the middle character if the length is odd.
+    """
+    return f'{string[0:int(len(string)/2)]}'
 
-    raise NotImplementedError("Problem 2 Incomplete")
 
-
-def backward(first_string):
-
-    raise NotImplementedError("Problem 2 Incomplete")
+def backward(string: str,/)->str:
+    """Returns the given string, but backwards.
+    """
+    return f'{first_string[::-1]}'
 
 #Problem 3
-def list_ops():
-
-    raise NotImplementedError("Problem 3 Incomplete")
+def list_ops()->list:
+    """Carries out a series of list operations.
+    """
+    given_list = ["bear", "ant", "cat", "dog"]
+    given_list.append("eagle")
+    given_list[2] = "fox"
+    given_list.pop(1)
+    given_list.sort(reverse=True)
+    given_list[given_list.index("eagle")] = "hawk"
+    given_list.append("hunter")
+    return given_list
 
 #Problem 4
-def alt_harmonic(n):
+def alt_harmonic(n: int)->float:
     """Return the partial sum of the first n terms of the alternating
     harmonic series. Use this function to approximate ln(2).
     """
-    raise NotImplementedError("Problem 4 Incomplete")
-
+    return round(sum([((-1)**(i+1))/i for i in range(1,n+1)]), 5)
 
 
 def prob5(A):
