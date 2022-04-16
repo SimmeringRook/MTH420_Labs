@@ -26,7 +26,7 @@ def first_half(string: str,/)->str:
 def backward(string: str,/)->str:
     """Returns the given string, but backwards.
     """
-    return f'{first_string[::-1]}'
+    return f'{string[::-1]}'
 
 #Problem 3
 def list_ops()->list:
