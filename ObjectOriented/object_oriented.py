@@ -26,7 +26,7 @@ class Backpack:
             max_size (int): the maximum item capacity for the backpack.
         """
         self.name = name
-        self.contents = []
+        self.contents = list()
         self.color = color
         self.max_size= max_size
 
@@ -43,7 +43,7 @@ class Backpack:
         
     def dump(self)->None:
         """Removes all items from the backpack's list of contents."""
-        self.contents = [ ]
+        self.contents = list()
 
     # Magic Methods -----------------------------------------------------------
 
@@ -64,11 +64,11 @@ def test_backpack():
         print("Backpack.name assigned incorrectly")
     for item in ["pencil", "pen", "paper", "computer"]:
         testpack.put(item) # Test a method.
-    print("Contents:", testpack.contents)
+    print(f"Contents: {testpack.contents}")
     for item in ["pencil", "pen", "paper", "computer"]:
         testpack.put(item) # Test capacity.
     testpack.dump()
-    print("Contents:", testpack.contents)
+    print(f"Contents: {testpack.contents}")
 
 # An example of inheritance. You are not required to modify this class.
 class Knapsack(Backpack):
@@ -116,6 +116,71 @@ class Knapsack(Backpack):
 
 
 # Problem 2: Write a 'Jetpack' class that inherits from the 'Backpack' class.
+class Jetpack(Backpack):
+    """A Jetpack that inherits from Backpack. In addition to storing information about the owner and contents stored inside, the jetpack can also hold an amount of fuel that can be used for flying.
+    
+    Attributes:
+        name (str): the name of the backpack's owner.
+        contents (list): the contents of the backpack.
+        color (str): the color of the backpack
+        max_size (int): the integer capacity of items the backpack can hold. Defaults to 5.
+        amount_of_fuel (float): the amount of fuel that can be used to fly. Defaults to 10.
+    """
+    
+    def __init__(self, name: str, color: str, amount_of_fuel: float=10, max_size: int = 5):
+        """Creates a jetpack that has the same properties of a backpack but can also hold fuel and fly.
 
+        Args:
+            name (str): The owner's name.
+            color (str): The color of the jetpack.
+            amount_of_fuel (float, optional): The amount of fuel stored in the jetpack. Defaults to 10.
+            max_size (int, optional): The maximum capacity for storage of items. Defaults to 5.
+        """
+        super().__init__(name, color, max_size)
+        self.amount_of_fuel = amount_of_fuel
+    
+    def put(self, item)->None:
+        """Places the item in storage, if the pack is not at full capacity. If the pack is full, the item will not be added and a message will print
+
+        Args:
+            item (_type_): the item to add to the pack
+        """
+        super().put(item)
+    
+    def fly(self, fuel_to_burn: float)->None:
+        """Will fly for the amount of fuel given, if the amount is not greater than what the jetpack currently has. If the request amount of fuel to fly is greater than what is available, the jetpack will not fly at all.
+
+        Args:
+            fuel_to_burn (float): amount of fuel to use for flight
+        """
+        if fuel_to_burn > self.amount_of_fuel:
+            print("Not enough fuel!")
+            return
+        self.amount_of_fuel -= fuel_to_burn
+        
+    def dump(self)->None:
+        """Dumps both the stored contents and any remaining fuel.
+        """
+        self.amount_of_fuel = 0
+        super().dump()
+
+def test_jetpack():
+    test_jetpack = Jetpack("Barry", "black") # Instantiate the object.
+    if test_jetpack.name != "Barry": # Test an attribute.
+        print("Backpack.name assigned incorrectly")
+    print(f"{test_jetpack.contents}, {test_jetpack.max_size=}")
+    for item in ["pencil", "pen", "paper", "computer"]:
+        test_jetpack.put(item) # Test a method.
+    print(f"Contents: {test_jetpack.contents}")
+    for item in ["pencil", "pen", "paper", "computer"]:
+        test_jetpack.put(item) # Test capacity.
+    print(f'Fuel remaining: {test_jetpack.amount_of_fuel}')
+    test_jetpack.fly(3)
+    print(f'Fuel remaining: {test_jetpack.amount_of_fuel}')
+    test_jetpack.fly(10)
+    print(f'Fuel remaining: {test_jetpack.amount_of_fuel}')
+    test_jetpack.dump()
+    print(f"Contents: {test_jetpack.contents}")
+    print(f'Fuel remaining: {test_jetpack.amount_of_fuel}')
 
 # Problem 4: Write a 'ComplexNumber' class.
