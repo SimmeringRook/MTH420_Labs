@@ -1,0 +1,25 @@
+04/19/22 22:08
+
+Problem 3 (5 points):
+Score += 5
+
+Problem 4 (10 points):
+NameError: name 'A' is not defined
+
+Problem 5 (10 points):
+Score += 10
+
+Problem 6 (20 points):
+Score += 20
+
+Code Quality (5 points):
+Score += 5
+
+Total score: 40/50 = 80.0%
+
+
+Comments:
+	please resubmit 
+
+-------------------------------------------------------------------------------
+
