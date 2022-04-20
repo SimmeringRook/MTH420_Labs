@@ -51,7 +51,11 @@ and use NumPy to carry out the matrix multiplication.
 
 import numpy as np
 
-def prob4():
+def prob4(A=None, B=None):
+    if A is None:
+        A = np.array([[3, -1, 4], [1,5,-9]])
+    if B is None:
+        B = np.array([[2,6,-5,3], [5,-8,9,7], [9,-3,-2,-3]])
     return get_product_of_A_and_B(A=A, B=B)
 
 def get_product_of_A_and_B(*, A=None, B=None):
