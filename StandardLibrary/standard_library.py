@@ -68,6 +68,8 @@ def hypot(a: float, b: float,/)->float:
     import calculator
     return calculator.sqrt(calculator.sum(calculator.product(a,a), calculator.product(b,b)))
 
+# print(hypot(3, 4))
+
 # Problem 4
 def power_set(A)->list:
     """Use itertools to compute the power set of A.
@@ -82,11 +84,10 @@ def power_set(A)->list:
     power_set = [ ]
     for i, _ in enumerate(A):
         for combination in combinations(A, i):
-            print(combination)
-            power_set.append(combination)
+            # print(combination)
+            power_set.append(set(combination))
     power_set.append(A)
     return power_set
-
 
 # Problem 5: Implement shut the box.
 def shut_the_box(player, timelimit):
